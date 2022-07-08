@@ -12,7 +12,7 @@ app.listen(HTTP_PORT, () => {
 
 // Root endpoint
 app.get("/", (req, res, next) => {
-    res.json({"message":"Ok"})
+    res.send("<p>Take home assignment from Ensemble (Backend)</p>")
 });
 
 // Insert here other API endpoints
