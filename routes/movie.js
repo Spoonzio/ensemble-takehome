@@ -8,6 +8,13 @@ var db = require("../database.js")
 router.get("/", function (req, res, next) {
     var sql = "select * from movie"
     var params = []
+
+    let searchTerm = req.query.name;
+    if(searchTerm){
+        sql = "SELECT * FROM movie WHERE title LIKE ?"
+        params = ['%' + searchTerm + '%']
+    }
+    
     db.all(sql, params, (err, rows) => {
         if (err) {
           res.status(400).json({"error":err.message});
