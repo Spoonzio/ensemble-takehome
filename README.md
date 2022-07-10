@@ -2,6 +2,20 @@
 ### Description
 This is the movie API for the Ensemble take home assignament (backend).
 
+## Installation
+Change directory to project folder and install with NPM.
+
+```bash
+npm install
+```
+
+## Usage
+Upon the installation, user can run the project and use with the below listed API endpoints.
+
+```bash
+npm start
+```
+
 ## Assignment Technology
 The API is built with Node.js and Express.js. 
 The database used is SQLite.
