@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-var db = require("../database.js")
+var db = require("../database.js");
+const { move } = require("./index.js");
 
 /**
  * Get All movies
@@ -130,6 +131,39 @@ router.delete("/:id", function (req, res, next) {
                 return;
             }
             res.json({"message":"deleted", changes: this.changes})
+    });
+});
+
+/**
+ * Like a Movie
+ */
+ router.post("/:id/:action(like|dislike)", function (req, res, next) {
+
+    // Prepare the query
+    var sql;
+    if(req.params.action == "like"){
+        sql = "update movie set vote = vote + 1 where id = ?"
+    }else if(req.params.action == "dislike"){
+        sql = "update movie set vote = vote - 1 where id = ?"
+    }else{
+        res.status(400).json({"error": "Invalid action"})
+        return;
+    }
+
+    var params = [req.params.id]
+
+    db.run(
+        sql, 
+        params, 
+        (err, result)=> {
+            if (err){
+                res.status(400).json({"error": res.message})
+                return;
+            }
+            res.json({
+                message: "success",
+                changes: this.changes
+            })
     });
 });
 

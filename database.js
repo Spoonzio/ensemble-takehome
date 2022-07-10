@@ -15,7 +15,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             description text, 
             year number, 
             duration text, 
-            rating text
+            rating text,
+            vote number DEFAULT 0
             )`,
         (err) => {
             if (err) {
