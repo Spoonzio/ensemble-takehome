@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <p>This is the movie API for the Ensemble take home assignament (backend).</p>
+    <p>The API is built with Node.js and Express.js. The database is SQLite.</p>
+    <table>
+        <tr>
+            <th>Endpoint</th>
+            <th>Method</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>/api/movies</td>
+            <td>GET</td>
+            <td>Get all movies</td>
+        </tr>
+        <tr>
+            <td>/api/movies?name=<i>titanic</i></td>
+            <td>GET</td>
+            <td>Search movies with search term</td>
+        </tr>
+        <tr>
+            <td>/api/movies/:id</td>
+            <td>GET</td>
+            <td>Get a movie by ID</td>
+        </tr>
+        <tr>
+            <td>/api/movies</td>
+            <td>POST</td>
+            <td>Create a new movie</td>
+        </tr>
+        <tr>
+            <td>/api/movies/:id</td>
+            <td>PUT</td>
+            <td>Update a movie</td>
+        </tr>
+        <tr>
+            <td>/api/movies/:id</td>
+            <td>DELETE</td>
+            <td>Delete a movie</td>
+        </tr>
+        <tr>
+            <td>/api/movies/:id/like</td>
+            <td>POST</td>
+            <td>Increment movie's vote by 1</td>
+        </tr>
+        <tr>
+            <td>/api/movies/:id/dislike</td>
+            <td>POST</td>
+            <td>Decrement movie's vote by 1</td>
+        </tr>
+        
+    </table>
+    
+    <p>The movie model is:</p>
+    <pre>
+    {
+        id INTEGER PK,
+        title TEXT UNIQUE, 
+        description TEXT, 
+        year NUMBER, 
+        duration TEXT, 
+        rating TEXT,
+        vote NUMBER DEFAULT 0
+    }
+    </pre>
+</body>
+</html>

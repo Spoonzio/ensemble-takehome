@@ -22,7 +22,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             if (err) {
                 // Table already created
             }else{
-                // Table just created, creating some rows
+                // Table just created, creating sample data
                 var insert = 'INSERT INTO movie (title, description, year, duration, rating) VALUES (?,?,?,?,?)'
                 db.run(insert, ["Titanic", "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.", 1997, "194", "7.9"])
             }

@@ -5,9 +5,10 @@ const { move } = require("./index.js");
 
 /**
  * Get All movies
+ * and search for a movie if given a search term (?name)
  */
 router.get("/", function (req, res, next) {
-    var sql = "select * from movie"
+    var sql = "SELECT * FROM movie"
     var params = []
 
     let searchTerm = req.query.name;
@@ -32,7 +33,7 @@ router.get("/", function (req, res, next) {
  * Get a movie by ID
  */
 router.get("/:id", function (req, res, next) {
-    var sql = "select * from movie where id = ?"
+    var sql = "SELECT * FROM movie WHERE id = ?"
     var params = [req.params.id]
     db.get(sql, params, (err, row) => {
         if (err) {
@@ -135,16 +136,16 @@ router.delete("/:id", function (req, res, next) {
 });
 
 /**
- * Like a Movie
+ * Dislike / Like a Movie
  */
  router.post("/:id/:action(like|dislike)", function (req, res, next) {
 
     // Prepare the query
     var sql;
     if(req.params.action == "like"){
-        sql = "update movie set vote = vote + 1 where id = ?"
+        sql = "UPDATE movie SET vote = vote + 1 WHERE id = ?"
     }else if(req.params.action == "dislike"){
-        sql = "update movie set vote = vote - 1 where id = ?"
+        sql = "UPDATE movie SET vote = vote - 1 WHERE id = ?"
     }else{
         res.status(400).json({"error": "Invalid action"})
         return;
